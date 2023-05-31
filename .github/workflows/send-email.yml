@@ -7,11 +7,13 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_SOURCE_FOLDER: webapplication01
+  PROJECT_SOURCE_FOLDER: webapplication01/
   PROJECT_ZIP_FILE: package.zip
 
 jobs:
-  build:
+  send-email:
+    
+    name: Send Email from GitHub Actions
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
