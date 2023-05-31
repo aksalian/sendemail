@@ -1,10 +1,14 @@
-name: Deploy Web Application to Azure Web App
+name: Send Email Using GitHub Action
 
 on:
   push:
     branches:
       - "main"
   workflow_dispatch:
+
+env:
+  PROJECT_SOURCE_FOLDER: webapplication01
+  PROJECT_ZIP_FILE: package.zip
 
 jobs:
   build:
@@ -55,7 +59,14 @@ jobs:
 #           attachments: # optional
 #           # Set Priority level for the mail message to 'high', 'normal' (default) or 'low'
 #           priority: # optional
-      
+    
+      - name: Zip the Test Project
+        uses: vimtor/action-zip@v1
+        with:
+          files: ${{ env.PROJECT_SOURCE_FOLDER }}
+          dest: ${{ env.PROJECT_ZIP_FILE }}
+          recursive: true
+
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -63,10 +74,10 @@ jobs:
           server_port: 465
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
-          subject: Github Actions job result
+          subject: Email - Github Actions
           to: akshatha.salian@capgemini.com
           html_body: 'Hello from SMTP Action GitHub'
-          from: gitHub
+          from: GitHub_Actions
           body: 'Testing Report completed successfully!'
           #content_type: application/zip
-          #attachments: '[{"path":${{ github.workspace }}//result.zip}]'
+          attachments: ${{ env.PROJECT_ZIP_FILE }}
