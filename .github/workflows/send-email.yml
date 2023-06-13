@@ -68,26 +68,6 @@ jobs:
           dest: ${{ env.PROJECT_ZIP_FILE }}
           recursive: true
 
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: Email - Github Actions
-          to: akshatha.salian@capgemini.com
-          html_body: 'Hello from SMTP Action GitHub'
-          from: GitHub_Actions
-          body: 'Testing Report completed successfully!'
-          #content_type: application/zip
-          attachments: ${{ env.PROJECT_ZIP_FILE }}
-
-  share-report-on-sharepoint:
-    name: Share Report to SharePoint Site
-    needs: [send-email]
-    runs-on: ubuntu-latest
-    steps:
       - name: SharePoint Uploader
         # You may pin to the exact commit or the version.
         # uses: su-dont/share-point-uploader@d5219f8801329ec36b7add0d3874a9df0564c577
@@ -105,4 +85,19 @@ jobs:
           sp_file_name: FinalReport
           # File to be uploaded
           file: ${{ env.PROJECT_ZIP_FILE }}
+          
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Email - Github Actions
+          to: akshatha.salian@capgemini.com
+          html_body: 'Hello from SMTP Action GitHub'
+          from: GitHub_Actions
+          body: 'Testing Report completed successfully!'
+          #content_type: application/zip
+          attachments: ${{ env.PROJECT_ZIP_FILE }}
           
