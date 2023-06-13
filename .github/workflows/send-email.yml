@@ -107,13 +107,13 @@ jobs:
         uses: obrassard/action-sharepoint-publish@v1.1.1
         with:
           # The Sharepoint site url
-          site_url: https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/Shared%20Documents/General
+          site_url: https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/
           # Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPlanteMoranAppDevPilot887%2FShared%20Documents%2FGeneral&viewid=e486d334%2D51ce%2D478f%2Dacb1%2Dc87f86d72a3f
           # Client ID to use for authentication
           sharepoint_client_id: 96c82b0c-7b8f-4507-8c6b-8e6a55334497
           # Client Secret to use for authentication
           sharepoint_client_secret: QuOYFeZTmK4ESuBxqCHxbSUrGB3eMeDHB0Zyv9qPmQ8=
           # The path where to upload the archive in the library
-          library_folder: /Test%20uploads/ # default is Shared documents
+          library_folder: /Shared Documents/GeneralTest uploads/ # default is Shared documents
           # To upload a specific file instead of the whole repo, specify the path here
           file_path: ${{ env.PROJECT_ZIP_FILE }}
