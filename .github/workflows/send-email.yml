@@ -74,13 +74,13 @@ jobs:
         uses: su-dont/share-point-uploader@v2.1
         with:
           # SharePoint URL
-          sp_url: 'https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/Shared%20Documents/Forms/AllItems.aspx'
+          sp_url: 'https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPlanteMoranAppDevPilot887%2FShared%20Documents%2FGeneral&viewid=e486d334%2D51ce%2D478f%2Dacb1%2Dc87f86d72a3f'
           # SharePoint Username
           sp_username: 'akshatha.salian@capgemini.com'
           # SharePoint Password
           sp_password: ${{secrets.SP_PASSWORD}}
           # SharePoint destination folder
-          sp_folder: '/General/Test Uploads/'
+          sp_folder: '/Test Uploads/'
           # SharePoint destination file name
           sp_file_name: FinalReport
           # File to be uploaded
