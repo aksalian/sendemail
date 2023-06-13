@@ -13,7 +13,7 @@ env:
 jobs:
   share-report-on-sharepoint:
     name: Share Report to SharePoint Site
-    runs-on: ubantu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: SharePoint Uploader
         # You may pin to the exact commit or the version.
