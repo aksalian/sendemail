@@ -68,36 +68,52 @@ jobs:
           dest: ${{ env.PROJECT_ZIP_FILE }}
           recursive: true
 
-      - name: SharePoint Uploader
-        # You may pin to the exact commit or the version.
-        # uses: su-dont/share-point-uploader@d5219f8801329ec36b7add0d3874a9df0564c577
-        uses: su-dont/share-point-uploader@v2.1
-        with:
-          # SharePoint URL
-          sp_url: https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPlanteMoranAppDevPilot887%2FShared%20Documents%2FGeneral&viewid=e486d334%2D51ce%2D478f%2Dacb1%2Dc87f86d72a3f
-          # SharePoint Username
-          sp_username: akshatha.salian@capgemini.com
-          # SharePoint Password
-          sp_password: ${{secrets.SP_PASSWORD}}
-          # SharePoint destination folder
-          sp_folder: /Test Uploads/
-          # SharePoint destination file name
-          sp_file_name: FinalReport
-          # File to be uploaded
-          file: ${{ env.PROJECT_ZIP_FILE }}
+      # - name: SharePoint Uploader
+      #   # You may pin to the exact commit or the version.
+      #   # uses: su-dont/share-point-uploader@d5219f8801329ec36b7add0d3874a9df0564c577
+      #   uses: su-dont/share-point-uploader@v2.1
+      #   with:
+      #     # SharePoint URL
+      #     sp_url: https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPlanteMoranAppDevPilot887%2FShared%20Documents%2FGeneral&viewid=e486d334%2D51ce%2D478f%2Dacb1%2Dc87f86d72a3f
+      #     # SharePoint Username
+      #     sp_username: akshatha.salian@capgemini.com
+      #     # SharePoint Password
+      #     sp_password: ${{secrets.SP_PASSWORD}}
+      #     # SharePoint destination folder
+      #     sp_folder: /Test Uploads/
+      #     # SharePoint destination file name
+      #     sp_file_name: FinalReport
+      #     # File to be uploaded
+      #     file: ${{ env.PROJECT_ZIP_FILE }}
           
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: Email - Github Actions
-          to: akshatha.salian@capgemini.com
-          html_body: 'Hello from SMTP Action GitHub'
-          from: GitHub_Actions
-          body: 'Testing Report completed successfully!'
-          #content_type: application/zip
-          attachments: ${{ env.PROJECT_ZIP_FILE }}
+      # - name: Send mail
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: smtp.gmail.com
+      #     server_port: 465
+      #     username: ${{secrets.MAIL_USERNAME}}
+      #     password: ${{secrets.MAIL_PASSWORD}}
+      #     subject: Email - Github Actions
+      #     to: akshatha.salian@capgemini.com
+      #     html_body: 'Hello from SMTP Action GitHub'
+      #     from: GitHub_Actions
+      #     body: 'Testing Report completed successfully!'
+      #     #content_type: application/zip
+      #     attachments: ${{ env.PROJECT_ZIP_FILE }}
           
+      - name: Publish to Sharepoint
+      # You may pin to the exact commit or the version.
+      # uses: obrassard/action-sharepoint-publish@81f579c09846644d84642642eeb30981c2848f50
+        uses: obrassard/action-sharepoint-publish@v1.1.1
+        with:
+          # The Sharepoint site url
+          site_url: https://capgemininar.sharepoint.com/sites/PlanteMoranAppDevPilot887/ 
+          # Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPlanteMoranAppDevPilot887%2FShared%20Documents%2FGeneral&viewid=e486d334%2D51ce%2D478f%2Dacb1%2Dc87f86d72a3f
+          # Client ID to use for authentication
+          sharepoint_client_id: 96c82b0c-7b8f-4507-8c6b-8e6a55334497
+          # Client Secret to use for authentication
+          sharepoint_client_secret: QuOYFeZTmK4ESuBxqCHxbSUrGB3eMeDHB0Zyv9qPmQ8=
+          # The path where to upload the archive in the library
+          library_folder: /Shared documents/General/Test Uploads # default is Shared documents
+          # To upload a specific file instead of the whole repo, specify the path here
+          file_path: ${{ env.PROJECT_ZIP_FILE }}
