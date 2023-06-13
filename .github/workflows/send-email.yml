@@ -114,6 +114,6 @@ jobs:
           # Client Secret to use for authentication
           sharepoint_client_secret: QuOYFeZTmK4ESuBxqCHxbSUrGB3eMeDHB0Zyv9qPmQ8=
           # The path where to upload the archive in the library
-          library_folder: /Test uploads # default is Shared documents
+          library_folder: /Test%20uploads/ # default is Shared documents
           # To upload a specific file instead of the whole repo, specify the path here
           file_path: ${{ env.PROJECT_ZIP_FILE }}
